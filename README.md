@@ -1,5 +1,5 @@
 # NotuBiz Calendar into Google Calendar
-[NotuBiz](https://www.notubiz.nl/) is a Dutch cuncil information system. 
+[NotuBiz](https://www.notubiz.nl/) is a Dutch council information system. 
 This tool lets you automatically import the council calendar of a municipality into your Google Calendar.
 
 The tool was created using [my unofficial NotuBiz Python client](https://github.com/RutgerRauws/python-notubiz).
@@ -13,7 +13,7 @@ source .venv/bin/activate
 pip install -r ./requirements.in
 ```
 
-## Using
+## Usage
 To use this tool, you only need to modify the settings in `config.yaml`.
 
 First, you need to find the ID of your Notubiz organisation. This ID can be found [here](https://api.notubiz.nl/organisations).
