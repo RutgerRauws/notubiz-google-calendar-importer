@@ -1,2 +1,4 @@
 notubiz @ git+https://github.com/RutgerRauws/python-notubiz@main
 gcsa==2.3.0
+pyyaml==6.0.2
+attrs==24.3.0

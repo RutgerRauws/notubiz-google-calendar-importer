@@ -1,0 +1,7 @@
+organisation_id: 686 # Find your ID here: https://api.notubiz.nl/organisations
+weeks_ahead: 12      # How many weeks ahead should be imported?
+
+# Read https://google-calendar-simple-api.readthedocs.io/en/latest/getting_started.html
+# To create your credentials.json
+google_mail_address: "your-email@gmail.com"
+google_calendar_id: "your-calendar@group.calendar.google.com"
