@@ -22,9 +22,11 @@ Change the `organisation_id` value in the config file accordingly.
 
 The tool imports a user-definable number of weeks ahead. You can change `weeks_ahead` if you desire, but I recommend starting with 12 weeks.
 
-In order to import the Notubiz calendar items into Google Calendar, we need to authenthicate our 'app' and get access to the Google API. Read [this article](https://google-calendar-simple-api.readthedocs.io/en/latest/getting_started.html) on how to create your own `credentials.json` and store them in the folder `.credentials`.
+In order to import the Notubiz calendar items into Google Calendar, we need to authenticate our app and get access to the Google API. Follow the official [Google Calendar API Python quickstart](https://developers.google.com/workspace/calendar/api/quickstart/python) to create OAuth credentials.
 
-Now, set the `google_mail_address` in `config.yaml` to the e-mail address of your Google Account used in the step before.
+After downloading the OAuth client file, store it as `.credentials/credentials.json`.
+
+On first run, a browser window opens for authentication. The script then stores `.credentials/token.json` and reuses it on subsequent runs.
 
 Lastly, go to [calendar.google.com](https://calendar.google.com) and create a new calendar that you wish to let this tool use.
 After creating this calendar, go to the calendar's settings to look up the Calendar ID and copy paste this value in  `google_calendar_id` of `config.yaml`. This value should have a format like: `xxxxxxxxxxx@group.calendar.google.com`

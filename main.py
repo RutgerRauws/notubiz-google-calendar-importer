@@ -4,10 +4,9 @@ from dateutil.relativedelta import relativedelta
 from notubiz import ApiClient, Configuration as NotubizConfig
 from notubiz.api.clients import EventsClient, AssemblyClient, MeetingClient
 
-from gcsa.google_calendar import GoogleCalendar
-
 from scripts.config import Config
 from scripts.add_to_gcal import NotubizGoogleCalendarImporter
+from scripts.google_calendar_client import GoogleCalendarClient
 
 config = Config.read_config()
 
@@ -18,17 +17,20 @@ date_end = datetime.combine(
 )
 
 # Get a handle to Google Calendar
-gc = GoogleCalendar(config.google_mail_address, credentials_path="./.credentials/credentials.json")
+gc = GoogleCalendarClient(
+    credentials_path="./.credentials/credentials.json",
+    token_path="./.credentials/token.json"
+)
 
 # First clear all existing events
 existing_events = gc.get_events(
-   time_min=date_start, 
-   time_max=date_end,
-   calendar_id=config.google_calendar_id
+  time_min=date_start, 
+  time_max=date_end,
+  calendar_id=config.google_calendar_id
 )
 
 for event in existing_events:
-    gc.delete_event(event=event, calendar_id=config.google_calendar_id)
+   gc.delete_event(event=event, calendar_id=config.google_calendar_id)
 
 #
 # Retrieve events from Notubiz
@@ -45,8 +47,7 @@ notubiz_events = event_client.get(date_start, date_end)
 # Get possible Notubiz assemblies/meetings and directly import them to Google Calendar
 importer = NotubizGoogleCalendarImporter(gc, config.google_calendar_id)
 for notubiz_event in notubiz_events:
-
-    if notubiz_event.type == "assembly":
+    if notubiz_event.type == "assembly" and notubiz_event.permission_group != 'content_management':
         try:
             assembly = assembly_client.get(notubiz_event.id)
 
